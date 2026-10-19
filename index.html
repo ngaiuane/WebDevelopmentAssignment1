@@ -1,13 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uane's Beauty Parlor Home</title>
-    <link rel="stylesheet" href="Styles.css">
-    <script async src="Interactive.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uane's Beauty Parlor</title>
+  <link rel="stylesheet" href="styles.css">
+ 
+  
 </head>
 <body>
+
+  <header>
+    <h1 class="logo">Uane's Beauty Parlor</h1>
+
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#home" data-page="home">Home</a></li>
+        <li><a href="#shop" data-page="shop">Shop</a></li>
+        <li><a href="#book" data-page="book">Book a Service</a></li>
+        <li><a href="#gallery" data-page="gallery">Gallery</a></li>
+        <li><a href="#reviews" data-page="reviews">Reviews</a></li>
+        <li><a href="#contact" data-page="contact">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="text-size" role="group" aria-label="Text size">
+      <button type="button" id="smaller" aria-label="Decrease text size">A-</button>
+      <button type="button" id="larger" aria-label="Increase text size">A+</button>
+    </div>
+  </header>
+
+  <main id="main">
+
     
+    <section id="home" class="page active">
+      <div class="hero">
+        <h2>Locs and crochet styles, made just for you at prices you can afford!</h2>
+        <p>Buy ready made locs or book your installation in minutes.</p>
+        <a href="#book" data-page="book" class="btn">Book Now</a>
+      </div>
+
+      <div class="cards">
+        <article>
+          <h3>Shop</h3>
+          <p>See what we have available instock!</p>
+          <a href="#shop" data-page="shop">Go to Shop</a>
+        </article>
+        <article>
+          <h3>Book a Service</h3>
+          <p>Pick your style, and see availability.</p>
+          <a href="#book" data-page="book">Go to Booking</a>
+        </article>
+        <article>
+          <h3>Gallery</h3>
+          <p>See our previous work.</p>
+          <a href="#gallery" data-page="gallery">Go to Gallery</a>
+        </article>
+        <article>
+          <h3>Reviews</h3>
+          <p>Review our services and our website.</p>
+          <a href="#reviews" data-page="reviews">Go to Reviews</a>
+        </article>
+      </div>
+
+      <div class="promo">
+        <h2>Our promise</h2>
+        <p>Every booking request gets a reply within 24 hours on the platform you prefer.</p>
+      </div>
+    </section>
+
+    
+    <section id="shop" class="page">
+  <h2>Shop</h2>
+
+  <div class="shop-main">
+    <div class="filters">
+      <div>
+        <label for="filter-length">Length</label>
+        <select id="filter-length">
+          <option value="all">All lengths</option>
+          <option value="short">Short</option>
+          <option value="medium">Medium</option>
+          <option value="long">Long</option>
+        </select>
+      </div>
+      <div>
+        <label for="filter-type">Type</label>
+        <select id="filter-type">
+          <option value="all">All types</option>
+          <option value="butterfly">Butterfly locs</option>
+          <option value="faux">Faux locs</option>
+          <option value="goddess">Goddess faux locs</option>
+        </select>
+      </div>
+      <button type="button" id="clear-filters">Clear filters</button>
+    </div>
+
+    <p id="result-count" aria-live="polite"></p>
+    <div id="product-list" class="cards"></div>
+  </div>
+
+  <aside id="cart" aria-live="polite">
+    <h3>Your cart</h3>
+    <ul id="cart-items"></ul>
+    <p>Total: N$<span id="cart-total">0</span></p>
+
+    <fieldset>
+      <legend>How would you like to receive your order?</legend>
+      <label><input type="radio" name="delivery" value="yango" checked> Delivery by Yango</label>
+      <label><input type="radio" name="delivery" value="pickup"> Pickup</label>
+    </fieldset>
+
+    <button type="button" id="checkout-btn">Place order</button>
+    <p id="order-message"></p>
+  </aside>
+</section>
+
+    
+    <section id="book" class="page">
+      <h2>Book a Service</h2>
+      <p>A deposit confirms your booking. The stylist will contact you within 24 hours with the amount and how to pay.</p>
+
+      <form id="booking-form" novalidate>
+        <fieldset>
+          <legend>Your details</legend>
+
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" required>
+
+          <p>Preferred way to reach you</p>
+          <label><input type="radio" name="contact" value="whatsapp" checked> WhatsApp</label>
+          <label><input type="radio" name="contact" value="email"> Email</label>
+          <label><input type="radio" name="contact" value="call"> Phone call</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your booking</legend>
+
+          <label for="service">Service</label>
+          <select id="service" name="service" required>
+            <option value="">Choose a service</option>
+            <option>Loc installation</option>
+            <option>Crochet hairstyle</option>
+            <option>Loc retwist</option>
+          </select>
+
+          <label for="date">Preferred date</label>
+          <input type="date" id="date" name="date" required>
+
+          <label for="photo">Upload your preferred style</label>
+          <input type="file" id="photo" name="photo" accept="image/*">
+          <img id="photo-preview" alt="Preview of your chosen style" hidden>
+
+          <label for="notes">Extra details (length, colour, size)</label>
+          <textarea id="notes" name="notes" rows="4"></textarea>
+        </fieldset>
+
+        <button type="submit" class="btn">Send booking request</button>
+        <p id="booking-message" role="status"></p>
+      </form>
+    </section>
+
+    <section id="gallery" class="page">
+  <h2>Gallery</h2>
+
+  <div class="slider">
+    <button type="button" id="prev-slide" class="slide-btn" aria-label="Previous image">&#10094;</button>
+
+    <figure class="slide">
+      <img id="slide-img" src="" alt="">
+      <figcaption id="slide-caption"></figcaption>
+    </figure>
+
+    <button type="button" id="next-slide" class="slide-btn" aria-label="Next image">&#10095;</button>
+  </div>
+
+  <p id="slide-counter" aria-live="polite"></p>
+</section>
+
+   
+    <section id="reviews" class="page">
+      <h2>Reviews</h2>
+      <p id="average-rating"></p>
+      <div id="review-list"></div>
+
+      <form id="review-form">
+        <h3>Leave a review</h3>
+
+        <label for="reviewer">Your name</label>
+        <input type="text" id="reviewer" required>
+
+        <label for="rating">Rating</label>
+        <select id="rating" required>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+          <option value="3">3 stars</option>
+          <option value="2">2 stars</option>
+          <option value="1">1 star</option>
+        </select>
+
+        <label for="comment">Your comment</label>
+        <textarea id="comment" rows="3" required></textarea>
+
+        <button type="submit">Post review</button>
+      </form>
+    </section>
+
+    
+    <section id="contact" class="page">
+      <h2>Contact Us</h2>
+      <ul>
+        <li>Phone / WhatsApp: +264 83 001 0067</li>
+        <li>Email: Uanes@gmail.com</li>
+        <li>Location: Windhoek, Namibia (Our Services are mobile)</li>
+        <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Uane's Beauty Parlor</p>
+  </footer>
+
+ 
+  <script src="script.js"></script>
 </body>
 </html>
